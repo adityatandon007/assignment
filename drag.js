@@ -226,20 +226,63 @@
 // // shape.circle();
 // // shape.rectangle();
 
-function draw(){
-  var canvas = document.getElementById('canvas');
-  if (canvas.getContext) {
-     var ctx = canvas.getContext('2d');
+var canvas = document.getElementById('canvas');
+var ctx = canvas.getContext('2d');
 
-    ctx.rect(100, 100, 100, 100);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.arc(75, 75, 50, 0, Math.PI * 2, true);
-     
-    // draw the stroke
-    ctx.lineWidth = 2;
-    ctx.strokeStyle = '#FF0000';
-    ctx.stroke();
+document.getElementById('draw-square').addEventListener('click', function() {
+  var sx = Number(document.getElementById('pos-x').value);
+  var sy = Number(document.getElementById('pos-y').value);
+  var s = Number(document.getElementById('side').value);
+  drawSquare(sx, sy, s);
+});
+
+document.getElementById('draw-circle').addEventListener('click', function() {
+  var cx = Number(document.getElementById('center-x').value);
+  var cy = Number(document.getElementById('center-y').value);
+  var r = Number(document.getElementById('radius').value);
+  drawCircle(cx, cy, r);
+});
+
+document.getElementById('tile').addEventListener('click', function() {
+  tile();
+});
+
+
+
+function drawSquare(sx, sy, s) {
+  console.log("pos x", sx);
+  ctx.strokeStyle = "black";
+  ctx.rect(sx, sy, s, s);
+  ctx.stroke();
+  document.getElementById('draw-square').disabled = true;
+
+  if(document.getElementById('draw-circle').disabled) {
+    document.getElementById('tile').disabled = false;
   }
 }
-draw();
+
+function drawCircle(cx, cy, r) {
+
+  ctx.strokeStyle="black";
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, 0, 2 * Math.PI, false);
+  ctx.stroke();
+  document.getElementById('draw-circle').disabled = true;
+
+  if(document.getElementById('draw-square').disabled) {
+    document.getElementById('tile').disabled = false;
+  }
+}
+
+// document.getElementById('clear').addEventListener('click', function(){
+//   clearCanvas();
+// });
+
+// function clearCanvas() {
+//   ctx.clearRect(0, 0, canvas.width, canvas.height);
+//   document.getElementById('draw-square').disabled = false;
+//   document.getElementById('draw-circle').disabled = false;
+// }
+
+// drawSquare(sx, sy, s);
+// drawCircle(cx, cy, r);

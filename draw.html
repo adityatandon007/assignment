@@ -6,10 +6,21 @@
 	<body>
 		<!-- <button onclick="Square('canvas')">Draw Square</button>
 		<button onclick="Circle('canvas')">Draw Circle</button> -->
-		
-		<div id="canvasContainer">
-			<canvas id="canvas" width="400" height="400" style="border:1px solid black"></canvas>
-		</div>
+		<input type="number" name="square" id="pos-x" value="0">
+		<input type="number" name="square" id="pos-y" value="0">
+		<input type="number" name="square" id="side" value="0">
+		<br>
+		<button id="draw-square" style="margin: 4px 0">Draw Square</button>
+		<br>
+		<input type="number" name="circle" id="center-x" value="0">
+		<input type="number" name="circle" id="center-y" value="0">
+		<input type="number" name="circle" id="radius" value="0">
+		<br>
+		<button id="draw-circle" style="margin: 4px 0">Draw Circle</button>
+		<br>
+		<button id="tile" style="margin: 4px 0" disabled="true">Tile</button>
+		<br>
+		<canvas id="canvas" width="400" height="400" style="border:1px solid black"></canvas>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.7.17/fabric.min.js"></script>
 		<!-- <script src="draw.js"></script> -->
 		<script src="drag.js"></script>
