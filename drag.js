@@ -230,27 +230,27 @@ var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 
 document.getElementById('draw-square').addEventListener('click', function() {
-  var sx = Number(document.getElementById('pos-x').value);
-  var sy = Number(document.getElementById('pos-y').value);
-  var s = Number(document.getElementById('side').value);
+  let sx = Number(document.getElementById('pos-x').value);
+  let sy = Number(document.getElementById('pos-y').value);
+  let s = Number(document.getElementById('side').value);
   drawSquare(sx, sy, s);
 });
 
 document.getElementById('draw-circle').addEventListener('click', function() {
-  var cx = Number(document.getElementById('center-x').value);
-  var cy = Number(document.getElementById('center-y').value);
-  var r = Number(document.getElementById('radius').value);
+  let cx = Number(document.getElementById('center-x').value);
+  let cy = Number(document.getElementById('center-y').value);
+  let r = Number(document.getElementById('radius').value);
   drawCircle(cx, cy, r);
 });
 
 document.getElementById('tile').addEventListener('click', function() {
-  tile();
+  drawTiles();
 });
 
 
 
 function drawSquare(sx, sy, s) {
-  console.log("pos x", sx);
+  // console.log("pos x", sx);
   ctx.strokeStyle = "black";
   ctx.rect(sx, sy, s, s);
   ctx.stroke();
@@ -274,15 +274,28 @@ function drawCircle(cx, cy, r) {
   }
 }
 
-// document.getElementById('clear').addEventListener('click', function(){
-//   clearCanvas();
-// });
+function drawTiles() {
+  let offset = 2;
+  let tile_length = 5;
+  let current_x = Number(document.getElementById('pos-x').value);
+  let current_y = Number(document.getElementById('pos-y').value);
+  let s = Number(document.getElementById('side').value);
 
-// function clearCanvas() {
-//   ctx.clearRect(0, 0, canvas.width, canvas.height);
-//   document.getElementById('draw-square').disabled = false;
-//   document.getElementById('draw-circle').disabled = false;
-// }
+  for(let i= current_y+offset; i+tile_length<current_y+offset+s; i+=tile_length+offset) {
+    console.log("current Y", i);
+    for (let j = current_x+offset; j+tile_length<current_x+offset+s; j+=tile_length+offset) {
+      console.log("current x", j)
+      drawtile(j,i,tile_length);
+    }
+  }
+}
 
-// drawSquare(sx, sy, s);
-// drawCircle(cx, cy, r);
+function drawtile(x, y, l) {
+  console.log("pos x", x);
+  console.log("pos y", y);
+  ctx.strokeStyle = "white";
+  ctx.fillStyle = "black";
+  ctx.rect(x, y, l, l);
+  ctx.fill();
+  ctx.stroke();
+}
